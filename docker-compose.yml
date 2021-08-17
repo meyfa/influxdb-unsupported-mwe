@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+
+  influxdb:
+    image: influxdb:2.0-alpine
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: default_user
+      DOCKER_INFLUXDB_INIT_PASSWORD: default_password
+      DOCKER_INFLUXDB_INIT_ORG: default_org
+      DOCKER_INFLUXDB_INIT_BUCKET: default_bucket
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: default_admin_token
+    ports:
+      - "8086:8086"
+
+  app:
+    build: ./
+    image: influxdb-unsupported-mwe
+    environment:
+      WAIT_HOSTS: "influxdb:8086"
+      influxUrl: "http://influxdb:8086"
+      influxOrg: default_org
+      influxBucket: default_bucket
+      influxToken: default_admin_token
