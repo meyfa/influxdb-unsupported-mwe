@@ -19,12 +19,11 @@ docker-compose up
 The final step will start the test app attached to the console.
 There will be output documenting the process.
 
-First, the app will wait 20 seconds for InfluxDB to come online.
-Then, it will perform a query, which will fail.
+First, the app will wait until InfluxDB has come online.
+Then, it will perform a query, which will fail (topic of the issue).
 
 Note that there is no need to provide your own InfluxDB instance;
-there is one included in docker-compose.yml specifically for this
-demonstration.
+there is one included in docker-compose.yml specifically for this demonstration.
 
 ## Fixing the problem
 
